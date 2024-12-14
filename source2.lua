@@ -779,7 +779,7 @@ do
 	function section:addToggle(data)
 		local this = {}
 		this.title = data.title or "nil text"
-		this.toggled = data.default or false
+		this.toggled = data.toggled or false
 		this.callback = data.callback or function() end
 
 		local toggle = utility:Create("ImageButton", {
@@ -850,6 +850,12 @@ do
 			return section:updateToggle(module)
 		end
 
+		    if this.toggled then
+			task.defer(function()
+			    this.callback(this.toggled)
+			end)
+		    end
+		
 		toggle.MouseButton1Click:Connect(function()
 			this.toggled = not this.toggled
 			self:updateToggle(module)
