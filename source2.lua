@@ -1948,7 +1948,7 @@ do
 				end
             end
 
-			return section:updateDropdown(module, {update = dataOptions["list"]})
+			return section:updateDropdown(module, {noOpen = true})
 		end
 
 		if (this.default) then
@@ -2305,7 +2305,7 @@ do
 
 		local frame = dropdown.List.Frame
 
-		if not aOptions.update then
+		if (not aOptions.noOpen) then
 			utility:Tween(dropdown, {Size = UDim2.new(1, 0, 0, (entries == 0 and 30) or math.clamp(entries, 0, 3) * 34 + 38)}, 0.3)
 			utility:Tween(dropdown.Search.Button, {Rotation = not aOptions.update and 180 or 0}, 0.3)
 		end
